@@ -5,7 +5,7 @@ import { useUserStore } from "./store/user";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { tgId } = useUserStore();
+  const { tgId, userData } = useUserStore();
   const router = useRouter();
   console.log("id: " + tgId);
   useEffect(() => {
@@ -19,6 +19,10 @@ export default function Home() {
   return (
     <Container>
       <p>Home - {tgId}</p>
+      {userData && <p>UserLang: {userData?.languageCode}</p>}
+      {userData && <p>UserName: {userData?.username}</p>}
+      {userData && <p>UserFullName: {userData?.firstName} {userData?.lastName}</p>}
+
     </Container>
   );
 }
