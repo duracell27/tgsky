@@ -1,3 +1,5 @@
+export type LanguageKeys = keyof typeof Languages;
+
 export const Languages = {
   en: {
     welcomePage: {
@@ -7,7 +9,7 @@ export const Languages = {
       buttonText: 'Start playing!'
     },
   },
-  ua: {
+  uk: {
     welcomePage: {
       title: "Побудуй хмарочос мрії та зроби своїх мешканців щасливими!",
       subTitle: "«Хмарочоси» — абсолютно нова, захоплива та ні на що не схожа онлайн-гра.",

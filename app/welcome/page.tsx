@@ -1,42 +1,58 @@
 "use client";
 import React, { useEffect } from "react";
-import { Languages } from "../utils/Language";
+import { LanguageKeys, Languages } from "../utils/Language";
 import Container from "../components/Container";
 import { useUserStore } from "../store/user";
 import { useRouter } from "next/navigation";
 import WebApp from "@twa-dev/sdk";
 
 const WelcomePage = () => {
-  const { tgId, setTgId } = useUserStore();
+  const { tgId, setTgId, userData, setUserData, language, setLanguage } =
+    useUserStore();
   const router = useRouter();
 
-  console.log("id: " + tgId);
+  console.log("userdata: " + userData);
 
   useEffect(() => {
-    
     if (typeof window !== "undefined") {
       const userId = WebApp.initDataUnsafe.user?.id;
 
-      if (userId !== undefined) {
-        setTgId(userId || null);
-      }
+      const firstName = WebApp.initDataUnsafe.user?.first_name || "";
+      const lastName = WebApp.initDataUnsafe.user?.last_name || "";
+      const username = WebApp.initDataUnsafe.user?.username || "";
+      const languageCode = WebApp.initDataUnsafe.user?.language_code || "en";
 
-      // Redirect based on tgId
-      if (!tgId) {
-        router.push("/welcome");
-      } else {
-        router.push("/");
+      console.log("id: " + userId);
+      if (userId !== undefined) {
+        console.log("check");
+
+        setTgId(userId || null);
+        setUserData({ firstName, lastName, username, languageCode });
+        setLanguage(languageCode);
       }
     }
-  }, [tgId, setTgId, router]);
+  }, [tgId, setTgId, router, setUserData, setLanguage]);
 
-  
   return (
     <Container>
-      <div className="">{Languages["en"].welcomePage.title}</div>
-      <div className="">{Languages["en"].welcomePage.welcomeUser} </div>
-      <button className="">{Languages["en"].welcomePage.buttonText}</button>
-      <div className="">{Languages["en"].welcomePage.subTitle}</div>
+      <div className="">
+        {Languages[language as LanguageKeys].welcomePage.title}
+      </div>
+      <div className=" text-white">
+        {Languages[language as LanguageKeys].welcomePage.welcomeUser}{" "}
+        {userData?.username || userData?.firstName}
+      </div>
+      <button
+        onClick={() => {
+          router.push("/");
+        }}
+        className="bg-white p-2 text-black"
+      >
+        {Languages[language as LanguageKeys].welcomePage.buttonText}
+      </button>
+      <div className="">
+        {Languages[language as LanguageKeys].welcomePage.subTitle}
+      </div>
     </Container>
   );
 };
