@@ -13,16 +13,22 @@ const WelcomePage = () => {
   console.log("id: " + tgId);
 
   useEffect(() => {
-    if(WebApp.initDataUnsafe.user?.id !== undefined){
-      setTgId(WebApp.initDataUnsafe.user.id || null);
-    }
     
-    if (!tgId) {
-      router.push("/welcome");
-    } else {
-      router.push("/");
+    if (typeof window !== "undefined") {
+      const userId = WebApp.initDataUnsafe.user?.id;
+
+      if (userId !== undefined) {
+        setTgId(userId || null);
+      }
+
+      // Redirect based on tgId
+      if (!tgId) {
+        router.push("/welcome");
+      } else {
+        router.push("/");
+      }
     }
-  });
+  }, [tgId, setTgId, router]);
 
   
   return (
