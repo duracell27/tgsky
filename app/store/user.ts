@@ -1,19 +1,33 @@
 import { create } from "zustand";
+import axios from "axios";
 
-type userData = {
+type userDataFromTg = {
+  tgId: number,
   firstName: string;
   lastName: string;
   username: string;
   languageCode: string;
 };
 
+type userDataFromDb = {
+  firstName: string;
+  lastName: string;
+  username: string;
+  languageCode: string;
+
+  lvl: number;
+  exp: number;
+  coins: number;
+  usd: number;
+};
+
 type User = {
   tgId: number | null;
   language: string;
-  userData: userData | null;
+  userData: userDataFromDb | null;
   setTgId: (tgId: number | null) => void;
-  setUserData: (userData: userData) => void;
-  setLanguage: (language: string) => void
+  setUserData: (userData: userDataFromTg) => void;
+  setLanguage: (language: string) => void;
 };
 
 export const useUserStore = create<User>()((set) => ({
@@ -21,6 +35,17 @@ export const useUserStore = create<User>()((set) => ({
   language: "uk",
   userData: null,
   setTgId: (tgId) => set(() => ({ tgId })),
-  setUserData: (userData) => set(() => ({ userData })),
+  setUserData: async (userData) => {
+    try {
+      const response = await axios.post('/api/user', { ...userData });
+      const userDataFromDb: userDataFromDb = response.data.user;
+
+      set(() => ({
+        userData: userDataFromDb,
+      }));
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  },
   setLanguage: (language) => set(() => ({ language })),
 }));
