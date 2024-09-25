@@ -11,8 +11,6 @@ const WelcomePage = () => {
     useUserStore();
   const router = useRouter();
 
-  console.log("userdata: " + userData);
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const userId = WebApp.initDataUnsafe.user?.id;
@@ -22,37 +20,42 @@ const WelcomePage = () => {
       const username = WebApp.initDataUnsafe.user?.username || "";
       const languageCode = WebApp.initDataUnsafe.user?.language_code || "en";
 
-      console.log("id: " + userId);
       if (userId !== undefined) {
-        console.log("check");
+       
 
         setTgId(userId || null);
         setUserData({ firstName, lastName, username, languageCode });
         setLanguage(languageCode);
+      }else{
+        // FAKE DATA
+        setTgId(46412059);
+        setUserData({ firstName:"Володимир", lastName: "Шмідт", username: 'volodymyr_shmidt', languageCode: "uk" });
+        setLanguage('uk');
       }
     }
   }, [tgId, setTgId, router, setUserData, setLanguage]);
 
   return (
     <Container>
-      <div className="">
+      <div className="flex flex-col gap-4 items-center text-white ">
+      <div className="text-center">
         {Languages[language as LanguageKeys].welcomePage.title}
       </div>
       <div className=" text-white">
         {Languages[language as LanguageKeys].welcomePage.welcomeUser}{" "}
-        {userData?.username || userData?.firstName}
+        <span className="font-bold">{userData?.username || userData?.firstName}</span>
       </div>
       <button
         onClick={() => {
           router.push("/");
         }}
-        className="bg-white p-2 text-black"
+        className="buttonPrimary"
       >
         {Languages[language as LanguageKeys].welcomePage.buttonText}
       </button>
-      <div className="">
+      <div className="text-center">
         {Languages[language as LanguageKeys].welcomePage.subTitle}
-      </div>
+      </div></div>
     </Container>
   );
 };

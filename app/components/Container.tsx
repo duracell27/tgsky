@@ -6,7 +6,7 @@ type ContainerProps = {
 };
 
 const Container: React.FC<ContainerProps> = ({ children }) => {
-  return <div className="w-[340px] mx-auto">{children}</div>;
+  return <div className="w-[340px] mx-auto patternDark">{children}</div>;
 };
 
 export default Container;
