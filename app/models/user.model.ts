@@ -11,6 +11,10 @@ interface User extends Document {
   exp: number;
   coins: number;
   usd: number;
+  coinBuster: number;
+  expBuster: number;
+  revenue: number;
+  revenueMax: number;
 }
 
 const userSchema = new Schema<User>(
@@ -24,6 +28,10 @@ const userSchema = new Schema<User>(
     exp: { type: Number, default: 0 },
     coins: { type: Number, default: 500 },
     usd: { type: Number, default: 15 },
+    coinBuster: { type: Number, default: 0 },
+    expBuster: { type: Number, default: 0 },
+    revenue: { type: Number, default: 0 },
+    revenueMax: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
