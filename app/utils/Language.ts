@@ -8,6 +8,17 @@ export const Languages = {
       welcomeUser: "Hi: ",
       buttonText: 'Let me in'
     },
+    menuSection: {
+      profile: 'My Profile',
+      city: "My City",
+      shop: "Shop",
+      human: "Residents",
+      rating: "Top",
+      payment: "Bucks"
+    },
+    userStats: {
+      lvl: 'level'
+    }
   },
   uk: {
     welcomePage: {
@@ -16,5 +27,16 @@ export const Languages = {
       welcomeUser: "Привіт: ",
       buttonText: 'Увійти'
     },
+    menuSection: {
+      profile: 'Мій профіль',
+      city: "Моє місто",
+      shop:"Магазин",
+      human: "Жителі",
+      rating: "Найкращі",
+      payment: "Бакси"
+    },
+    userStats: {
+      lvl: 'рівень'
+    }
   },
 };
