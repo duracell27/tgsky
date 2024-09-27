@@ -19,7 +19,7 @@ interface User extends Document {
 
 const userSchema = new Schema<User>(
   {
-    tgId: { type: Number, required: true, unique: true },
+    tgId: { type: Number, required: true },
     firstName: { type: String },
     lastName: { type: String },
     username: { type: String },

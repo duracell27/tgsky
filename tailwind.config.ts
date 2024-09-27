@@ -11,7 +11,12 @@ const config = {
       colors: {
         violetDark: '#4b2a93',
         violetLight: '#673dc2',
-        violetBorder: '#7055aa'
+        violetBorder: '#7055aa',
+        typeGreen: '#0C0',
+        typeBlue: '#00ffff',
+        typeYellow: '#ffff00',
+        typeViolet: '#B56DFF',
+        typeOrange: "#F0823F"
       },
     },
   },

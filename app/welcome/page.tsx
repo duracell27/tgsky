@@ -5,10 +5,13 @@ import Container from "../components/Container";
 import { useUserStore } from "../store/user";
 import { useRouter } from "next/navigation";
 import WebApp from "@twa-dev/sdk";
+import { useFloorStore } from "../store/floor";
 
 const WelcomePage = () => {
   const { setTgId, userData, setUserData, language, setLanguage } =
     useUserStore();
+
+    const {setFloors} = useFloorStore()
   const router = useRouter();
 
   useEffect(() => {
@@ -26,12 +29,18 @@ const WelcomePage = () => {
         setTgId(userId || null);
         setUserData({ tgId:userId, firstName, lastName, username, languageCode });
         setLanguage(languageCode);
+
+        // get floors
+        setFloors(userId)
       }else{
         // FAKE DATA
         
         setTgId(46412059);
         setUserData({ tgId:46412059, firstName:"Володимир", lastName: "Шмідт", username: 'volodymyr_shmidt', languageCode: "uk" });
         setLanguage('uk');
+
+        // get floors
+        setFloors(46412059)
       }
     }
   }, []);
