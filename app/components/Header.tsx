@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ gold, usd }) => {
         />
         {formatNumberWithSpaces(usd)}
       </p>
-      <p></p>
+      
     </div>
   );
 };
