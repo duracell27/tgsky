@@ -16,6 +16,8 @@ export interface Floor {
   tgId: number;
   floorNumber: number;
   floorType: "products" | "services" | "recreation" | "fashion" | "electronics";
+  floorStatus: "waitingForBuild" | "building" | "builded"
+  timeToBuild: Date | null
   floorTypeOrdinal: number;
   floorLvl: number;
   floorReduceBuy: number;
@@ -30,6 +32,8 @@ const floorSchema = new Schema<Floor>(
     tgId: { type: Number, required: true },
     floorNumber: { type: Number, required: true },
     floorType: { type: String, required: true },
+    floorStatus: {type: String, required: true},
+    timeToBuild: { type: Date, default: null },
     floorTypeOrdinal: { type: Number, required: true },
     floorLvl: { type: Number, required: true, default: 0 },
     floorReduceBuy: { type: Number, required: true, default: 0 },
