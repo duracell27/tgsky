@@ -12,6 +12,8 @@ const config = {
         violetDark: '#4b2a93',
         violetLight: '#673dc2',
         violetBorder: '#7055aa',
+        violetLink: "#c7a7e7",
+        gray: "#999",
         typeGreen: '#0C0',
         typeBlue: '#00ffff',
         typeYellow: '#ffff00',

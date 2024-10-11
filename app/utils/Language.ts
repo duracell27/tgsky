@@ -22,6 +22,10 @@ export const Languages = {
     userStats: {
       lvl: "level",
     },
+    home: {
+      workerSub: 'Workers needed',
+      workerLink: 'Find a worker'
+    }
   },
   uk: {
     welcomePage: {
@@ -42,6 +46,10 @@ export const Languages = {
     userStats: {
       lvl: "рівень",
     },
+    home: {
+      workerSub: 'Потрібні працівники',
+      workerLink: 'Знайти працівника'
+    }
   },
 };
 
