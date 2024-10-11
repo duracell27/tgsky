@@ -2,9 +2,12 @@ import Image from "next/image";
 import React from "react";
 
 import { useFloorStore } from "../store/floor";
+import { FloorKeys, FloorNames } from "../utils/Language";
+import { useUserStore } from "../store/user";
 
 const Floors: React.FC = () => {
   const { floors } = useFloorStore();
+  const { language } = useUserStore();
   if (!floors) return "";
   return (
     <div className="my-2">
@@ -28,7 +31,8 @@ const Floors: React.FC = () => {
                     : "",
               }}
             >
-              {floor.floorNumber}. {floor.floorName}
+              
+              {floor.floorNumber}. {FloorNames[language as FloorKeys]?.[floor.floorType]?.[floor.floorTypeOrdinal]?.floorName}
             </div>
             <div className="flex mx-1">
               <Image

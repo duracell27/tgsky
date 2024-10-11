@@ -1,4 +1,5 @@
 export type LanguageKeys = keyof typeof Languages;
+export type FloorKeys = keyof typeof FloorNames;
 
 export const Languages = {
   en: {
