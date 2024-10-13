@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { formatNumberWithSpaces } from "../utils/miniHelps";
+import Link from "next/link";
 
 type HeaderProps = {
   gold: number;
@@ -9,7 +10,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ gold, usd }) => {
   return (
-    <div className="bg-violetLight flex justify-end text-white textShadow">
+    <Link href={'/'} className="bg-violetLight flex justify-end text-white textShadow">
       <p className="flex gap-[2px]">
         <Image
           src={"/img/icons/coin.png"}
@@ -31,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ gold, usd }) => {
         {formatNumberWithSpaces(usd)}
       </p>
       
-    </div>
+    </Link>
   );
 };
 

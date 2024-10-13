@@ -9,13 +9,40 @@ import {
   Languages,
 } from "../utils/Language";
 import { useUserStore } from "../store/user";
-import { Floor } from "../models/floor.model";
+import { Department, Floor } from "../models/floor.model";
 import Link from "next/link";
 
 const Floors: React.FC = () => {
   const { floors } = useFloorStore();
   const { language } = useUserStore();
   if (!floors) return "";
+
+  function getDepartmentIcon(department: Department): string {
+    const now = new Date();
+
+    console.log('department icon', department)
+  
+    switch (department.status) {
+      case 'waitForWorker':
+        return '/img/icons/noHuman.png';
+      case 'idle':
+        return '/img/icons/emptySlot.png';
+      case 'delivery':
+        if (department.timeToDelivery && new Date(department.timeToDelivery) < now) {
+          return '/img/icons/delivered.png';
+        } else {
+          return '/img/icons/delivery.png';
+        }
+      case 'selling':
+        if (department.timeToSell && new Date(department.timeToSell) < now) {
+          return '/img/icons/coin+.png';
+        } else {
+          return '/img/icons/selling.png';
+        }
+      default:
+        return '/img/icons/shop.png'; // Для захисту від помилок
+    }
+  }
 
   const generateFloorDescription = (floor: Floor) => {
     const currentTime = new Date();
@@ -92,7 +119,7 @@ const Floors: React.FC = () => {
     <div className="my-2">
       {floors.map((floor, index) => (
         <div key={index} className="">
-          <div className="flex justify-between bg-violetLight">
+          <Link href={`/floor/${floor._id}`} className="flex justify-between bg-violetLight">
             <div
               className="textShadow mx-1"
               style={{
@@ -118,29 +145,30 @@ const Floors: React.FC = () => {
               }
             </div>
             <div className="flex mx-1">
+
               <Image
-                src={"/img/icons/coin.png"}
+                src={getDepartmentIcon(floor.departments[0])}
                 width={16}
                 height={16}
                 alt="statuses"
                 style={{ objectFit: "contain" }}
               />
               <Image
-                src={"/img/icons/coin.png"}
+                src={getDepartmentIcon(floor.departments[1])}
                 width={16}
                 height={16}
                 alt="statuses"
                 style={{ objectFit: "contain" }}
               />
               <Image
-                src={"/img/icons/coin.png"}
+                src={getDepartmentIcon(floor.departments[2])}
                 width={16}
                 height={16}
                 alt="statuses"
                 style={{ objectFit: "contain" }}
               />
             </div>
-          </div>
+          </Link>
           <div className="p-1">
             <div className=" flex justify-start gap-2 items-start leading-none">
               <Image

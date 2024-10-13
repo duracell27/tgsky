@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
-import { Floor, Department } from "../models/floor.model";
+import { Floor } from "../models/floor.model";
 
 // type Floor{}
 

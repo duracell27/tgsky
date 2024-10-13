@@ -1,4 +1,4 @@
-import mongoose, { Model, Schema, Types } from "mongoose";
+import mongoose, { Document, Model, Schema, Types } from "mongoose";
 
 export interface Department {
   ordinal: number;
@@ -12,7 +12,7 @@ export interface Department {
   timeToSell: Date | null;
 }
 
-export interface Floor {
+export interface Floor extends Document{
   tgId: number;
   floorNumber: number;
   floorType: "products" | "services" | "recreation" | "fashion" | "electronics";
