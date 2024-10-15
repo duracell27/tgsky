@@ -97,7 +97,7 @@ export const GET = async (req: NextRequest) => {
               return NextResponse.json({ success: false, message: "Please relogin to game" }, { status: 400 });
             }
 
-      const floors = await FloorModel.find({ tgId }).select(' -workers').sort({floorNumber: -1});
+      const floors = await FloorModel.find({ tgId }).sort({floorNumber: -1});
       
       return NextResponse.json({ success: true, floors });
     } catch (error) {

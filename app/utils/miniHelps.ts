@@ -37,7 +37,7 @@ export function fromSecToTimeString(seconds: number, language: string): string {
 export function formatTimeUntilNow(timestamp: Date, language: string): string {
   const targetDate = new Date(timestamp); // Перетворюємо строку на дату
   const currentTime = new Date(); // Поточний час
-  let diffInSeconds = Math.floor((targetDate.getTime() - currentTime.getTime()) / 1000); // Різниця в секундах
+  const diffInSeconds = Math.floor((targetDate.getTime() - currentTime.getTime()) / 1000); // Різниця в секундах
 
   // Якщо час в минулому або дорівнює 0, то повертаємо "0"
   if (diffInSeconds <= 0) {

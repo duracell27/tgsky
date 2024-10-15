@@ -37,7 +37,7 @@ const Departments = ({
           ) {
             return (
               <div className="mb-2">
-                  <div className="leading-none flex justify-between mb-1">
+                  <div className="leading-none flex justify-between">
                   <span
                     className="textShadow"
                     style={{
@@ -101,7 +101,7 @@ const Departments = ({
           ) {
             return (
               <div className="mb-2">
-                <div className="leading-none mb-1">
+                <div className="leading-none">
                   <span
                     className="textShadow"
                     style={{
@@ -165,7 +165,7 @@ const Departments = ({
     ) {
       return (
         <div className="mb-2">
-            <div className="leading-none mb-1">
+            <div className="leading-none">
             <span
               className="textShadow"
               style={{
@@ -221,7 +221,7 @@ const Departments = ({
     ) {
       return (
         <div className="mb-2">
-          <div className="leading-none mb-1">
+          <div className="leading-none">
             <span
               className="textShadow"
               style={{
@@ -375,7 +375,7 @@ const Departments = ({
     if (department.status === "waitForWorker") {
       return (
         <div className="mb-2">
-          <div className="leading-none mb-1">
+          <div className="leading-none">
             <span
               className="textShadow"
               style={{
